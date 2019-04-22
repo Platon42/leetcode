@@ -6,8 +6,6 @@ import java.util.List;
 
 public class GroupAnagrams {
 
-
-
     class MyHashMap {
         private final int MAX_LEN = 100000;             // the amount of buckets
         private List<Pair<Integer, Integer>>[] map;     // hash map implemented by array
