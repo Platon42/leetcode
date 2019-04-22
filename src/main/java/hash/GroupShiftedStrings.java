@@ -3,20 +3,19 @@ package hash;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 @SuppressWarnings("Duplicates")
-public class GroupAnagrams {
 
-    public static void groupAnagrams(String[] strs) {
+public class GroupShiftedStrings {
+
+    public static List<List<String>> groupStrings(String[] strings) {
 
         HashMap<Integer,ArrayList<String>> hashMap = new HashMap<>();
-        int [] array = new int[]{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107};
 
-        for (String str : strs) {
+        for (String str : strings) {
             char[] chars = str.toCharArray();
             int key = 1;
             for (char ch : chars) {
-                key *= array[ch - 'a'];
+                key = ch - 'a';
             }
             if (!hashMap.containsKey(key)) {
                 ArrayList<String> arrayList = new ArrayList<>();
@@ -28,9 +27,9 @@ public class GroupAnagrams {
                 hashMap.put(key, current);
             }
         }
-        ArrayList<ArrayList<String>> arrayLists = new ArrayList<>(hashMap.values());
+        List<List<String>> arrayLists = new ArrayList<>(hashMap.values());
         int i=0;
-        for (ArrayList<String> arrayList: arrayLists) {
+        for (List<String> arrayList: arrayLists) {
             System.out.println("Index="+i);
             for (String s : arrayList) {
                 System.out.println("item= " + s);
@@ -38,10 +37,11 @@ public class GroupAnagrams {
             i++;
         }
 
+        return arrayLists;
+
     }
+
     public static void main(String[] args) {
-       groupAnagrams(new String[]{"cab","tin","pew","duh","may","ill","buy","bar","max","doc"});
+        groupStrings(new String[]{"abc","bcd"});
     }
-
 }
-
