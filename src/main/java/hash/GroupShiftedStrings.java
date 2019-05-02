@@ -14,8 +14,17 @@ public class GroupShiftedStrings {
         for (String str : strings) {
             char[] chars = str.toCharArray();
             int key = 1;
+            int first = str.charAt(0);
             for (char ch : chars) {
-                key = ch - 'a';
+                if (ch - first <= 0) {
+                    key += ch - first + 26;
+                    System.out.println(key);
+                } else {
+                    System.out.println(key);
+
+                    key += ch - first;
+                }
+                //key += (ch - first < 0 ? ch - first + 26 : ch - first);
             }
             if (!hashMap.containsKey(key)) {
                 ArrayList<String> arrayList = new ArrayList<>();
@@ -42,6 +51,6 @@ public class GroupShiftedStrings {
     }
 
     public static void main(String[] args) {
-        groupStrings(new String[]{"abc","bcd"});
+        groupStrings(new String[]{"aa","bb","b"});
     }
 }
