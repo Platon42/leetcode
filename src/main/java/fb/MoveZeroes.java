@@ -1,15 +1,12 @@
 package fb;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class MoveZeroes {
 
     public void moveZeroes(int[] nums) {
 
-        Queue<Integer> queue = new LinkedList<>();
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
 
         for (int num : nums) {
             if (num != 0) queue.add(num);
@@ -20,8 +17,6 @@ public class MoveZeroes {
             else nums[i] = 0;
         }
 
-
-
         System.out.println(queue);
         System.out.println(Arrays.toString(nums));
     }
@@ -30,6 +25,4 @@ public class MoveZeroes {
         MoveZeroes moveZeroes = new MoveZeroes();
         moveZeroes.moveZeroes(new int[] {0,1,0,3,12});
     }
-
-
 }
