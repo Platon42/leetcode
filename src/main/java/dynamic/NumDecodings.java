@@ -1,15 +1,33 @@
 package dynamic;
 
+import java.util.Arrays;
+
 public class NumDecodings {
 
     public int numDecodings(String s) {
 
-        char[] chars = s.toCharArray();
+        int[] dp = new int[s.length()+1];
+        dp[0] = 1;
+        dp[1] = s.charAt(0) == '0' ? 0 : 1;
 
-        for (int i = 0; i < chars.length; i++) {
+        for (int i = 2; i <= s.length(); i++) {
+            int oneDigit = Integer.valueOf(s.substring(i-1,i));
+            int twoDigits = Integer.valueOf(s.substring(i-2,i));
 
+            if (oneDigit >= 1) {
+                dp[i] += dp[i-1];
+            }
+
+            if (twoDigits >= 10 && twoDigits <= 26) {
+                dp[i] += dp[i-2];
+            }
         }
+        System.out.println(Arrays.toString(dp));
+        return dp[s.length()];
+    }
 
-        return 1;
+    public static void main(String[] args) {
+        NumDecodings numDecodings = new NumDecodings();
+        numDecodings.numDecodings("12");
     }
 }
