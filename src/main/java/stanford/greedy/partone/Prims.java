@@ -1,4 +1,4 @@
-package stanford.greedy;
+package stanford.greedy.partone;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 
 public class Prims {
 
-    static class Edge {
+    private static class Edge {
 
         Integer from;
         Integer to;
@@ -67,7 +67,7 @@ public class Prims {
             //System.out.println(edge.cost);
 
             if (marked[edge.to]) continue;
-            //marked[edge.from] = true;
+            marked[edge.from] = true;
 
             for (Edge e : G.get(edge.to)) {
                 if (!marked[edge.to]) {

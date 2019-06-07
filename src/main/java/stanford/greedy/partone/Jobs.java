@@ -1,4 +1,4 @@
-package stanford.greedy;
+package stanford.greedy.partone;
 
 import java.io.IOException;
 import java.math.BigDecimal;
