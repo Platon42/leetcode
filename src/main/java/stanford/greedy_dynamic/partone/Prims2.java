@@ -1,4 +1,4 @@
-package stanford.greedy.partone;
+package stanford.greedy_dynamic.partone;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,7 +1,6 @@
-package stanford.greedy.partone;
+package stanford.greedy_dynamic.partone;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;

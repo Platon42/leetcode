@@ -1,4 +1,4 @@
-package stanford.greedy.partthree;
+package stanford.greedy_dynamic.partthree;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,18 +27,29 @@ public class Huffman {
     public static void main(String[] args) throws IOException {
 
         HuffmanNode root = buildTree();
-
         String s = "";
-        ArrayList<String> arrayList = new ArrayList<>();
 
+        ArrayList<String> arrayList = new ArrayList<>();
         traverse(root, s, arrayList);
 
+        StringBuilder sb = new StringBuilder();
+
+        int m = 0;
+        for (String d : arrayList) {
+            sb.append(d);
+            m += d.length();
+            //System.out.println(d);
+        }
+
+        System.out.println(m);
+        //System.out.println(sb.toString());
         String max = Collections.max(arrayList, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
                 return o1.length() - o2.length();
             }
         });
+
         String min = Collections.max(arrayList, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
@@ -55,7 +66,6 @@ public class Huffman {
         if (root == null)
             return;
 
-        // found a leaf node
         if (root.left == null && root.right == null) {
             huffmanCode.add(str);
         }
@@ -67,13 +77,8 @@ public class Huffman {
 
     private static HuffmanNode buildTree() throws IOException {
 
-        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Platon\\Downloads\\huffman.txt"));
-        PriorityQueue<HuffmanNode> pq = new PriorityQueue<>(new Comparator<HuffmanNode>() {
-            @Override
-            public int compare(HuffmanNode o1, HuffmanNode o2) {
-                return o1.freq.compareTo(o2.freq);
-            }
-        });
+        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Platon\\Downloads\\huf2.txt"));
+        PriorityQueue<HuffmanNode> pq = new PriorityQueue<>(Comparator.comparing(o -> o.freq));
 
         for (String line : lines)
             pq.add(new HuffmanNode(Integer.valueOf(line)));

@@ -1,4 +1,4 @@
-package stanford.greedy.parttwo;
+package stanford.greedy_dynamic.parttwo;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 @SuppressWarnings("Duplicates")
-public class KCluster {
+public class Kruskal {
 
     private static class Edge {
 
@@ -24,7 +24,7 @@ public class KCluster {
         }
     }
 
-    private static class Graph {
+    static class Graph {
         int vertices;
         ArrayList<Edge> allEdges = new ArrayList<>();
 
@@ -48,11 +48,10 @@ public class KCluster {
 
         });
 
-
-        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Platon\\Downloads\\cluster.txt"));
+        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Platon\\Downloads\\edges_greedy.txt"));
 
         int vertices = 500;
-        //int edges = 2184;
+        int edges = 2184;
 
         Graph graph = new Graph(vertices);
         int from = 0, to = 0, cost = 0;
@@ -78,19 +77,21 @@ public class KCluster {
         makeSet(parent, vertices);
 
         int sum = 0;
-        int nc = vertices;
-        int k = 4;
-
-        while (nc != k - 1) {
+        int index = 0;
+        while (index < vertices - 1) {
             Edge edge = pq.remove();
 
-            int x = find(parent,edge.from);
+            int x = find(parent, edge.from);
             int y = find(parent, edge.to);
-            if (x != y) {
-                nc --;
-                sum = edge.cost;
+
+            if (x == y) {
+                //ignore, will create cycle
+            } else {
+                //add it to our final result
+                index++;
+                union(parent, x, y);
+                sum += edge.cost;
             }
-            union(parent, x, y);
         }
 
         System.out.println(sum);
