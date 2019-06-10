@@ -1,4 +1,4 @@
 package stanford.greedy.parttwo;
 
-public class Cluster {
+public class BigCluster {
 }
