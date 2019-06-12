@@ -22,8 +22,8 @@ public class Knapsack {
 
     public static void main(String[] args) throws IOException {
 
-        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Platon\\Downloads\\big_knapsack.txt"));
-        ArrayList<Item> items = new ArrayList<>();
+        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Platon\\Downloads\\knapsack1.txt"));
+        LinkedList <Item> items = new LinkedList<>();
 
         //fill array
         String[] params = lines.get(0).split("\\s+");
@@ -31,18 +31,12 @@ public class Knapsack {
         SIZE = Integer.valueOf(params[0]);
         ITEMS = Integer.valueOf(params[1]);
 
-        int val[] = new int[SIZE];
-        int wt[] = new int[ITEMS];
-
-
-        int idx = 0;
-
         int value, weight;
         Item item = null;
 
-        for (int i = 1; i < lines.size(); i++) {
+        for (int i = lines.size() - 1; i >= 1; i--) {
             String[] strings = lines.get(i).split("\\s+");
-            for (int j = 0; j < strings.length; j++) {
+            for (int j = strings.length - 1; j >= 0; j--) {
                 value = Integer.valueOf(strings[0]);
                 weight = Integer.valueOf(strings[1]);
                 item = new Item(value,weight);
@@ -59,10 +53,13 @@ public class Knapsack {
 
         for (int i = 1; i <= ITEMS; i++) {
             for (int x = 0; x <= SIZE; x++) {
-                if (items.get(i - 1).weight > x)
+                if (items.get(i - 1).weight > x ) {
                     A[i][x] = A[i - 1][x];
-                else
+                    //items.remove(i - 1);
+                } else {
                     A[i][x] = Math.max(A[i - 1][x], A[i - 1][x - items.get(i - 1).weight] + items.get(i - 1).value);
+                    //items.remove(i - 1);
+                }
             }
         }
 

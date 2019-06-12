@@ -38,10 +38,10 @@ public class Huffman {
         for (String d : arrayList) {
             sb.append(d);
             m += d.length();
-            //System.out.println(d);
+            System.out.println(d);
         }
 
-        System.out.println(m);
+        //System.out.println(m);
         //System.out.println(sb.toString());
         String max = Collections.max(arrayList, new Comparator<String>() {
             @Override
@@ -56,8 +56,8 @@ public class Huffman {
                 return o2.length() - o1.length();
             }
         });
-        System.out.println(max.length());
-        System.out.println(min.length());
+        //System.out.println(max.length());
+        //System.out.println(min.length());
 
     }
 
